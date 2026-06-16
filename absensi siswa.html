@@ -1,0 +1,64 @@
+# 1. Menyiapkan Data Awal
+# Ini seperti buku catatan kita. Nama siswa adalah kunci, statusnya adalah isinya.
+data_absensi = {
+    "Andi": "Belum ada keterangan",
+    "Budi": "Belum ada keterangan",
+    "Citra": "Belum ada keterangan"
+}
+
+# 2. Membuat Fitur untuk Melihat Absensi
+def tampilkan_absensi():
+    print("\n--- Daftar Kehadiran Siswa ---")
+    # Mengambil setiap nama dan status dari buku catatan kita, lalu menampilkannya
+    for nama, status in data_absensi.items():
+        print(f"{nama} \t: {status}")
+    print("------------------------------\n")
+
+# 3. Membuat Fitur untuk Mencatat Kehadiran
+def catat_kehadiran():
+    nama = input("Masukkan nama siswa yang ingin dicatat (Contoh: Andi): ")
+    
+    # Mengecek apakah nama yang diketik ada di buku catatan kita
+    if nama in data_absensi:
+        print("Pilih status kehadiran:")
+        print("1. Hadir")
+        print("2. Izin")
+        print("3. Sakit")
+        print("4. Alpa")
+        pilihan = input("Masukkan angka pilihan (1/2/3/4): ")
+
+        # Mengubah status berdasarkan angka yang dipilih
+        if pilihan == '1':
+            data_absensi[nama] = "Hadir"
+        elif pilihan == '2':
+            data_absensi[nama] = "Izin"
+        elif pilihan == '3':
+            data_absensi[nama] = "Sakit"
+        elif pilihan == '4':
+            data_absensi[nama] = "Alpa"
+        else:
+            print("Pilihan tidak valid, silakan coba lagi.")
+            return # Menghentikan proses jika angkanya salah
+            
+        print(f"Bagus! Status {nama} berhasil diperbarui menjadi {data_absensi[nama]}.\n")
+    else:
+        print("Maaf, nama siswa tidak ditemukan. Pastikan huruf besar/kecilnya sesuai ya.\n")
+
+# 4. Membuat Menu Utama yang Terus Berjalan
+while True:
+    print("=== Menu Aplikasi Presensi ===")
+    print("1. Lihat Daftar Kehadiran")
+    print("2. Catat Kehadiran Siswa")
+    print("3. Keluar dari Aplikasi")
+    
+    menu = input("Pilih menu (ketik 1, 2, atau 3): ")
+
+    if menu == '1':
+        tampilkan_absensi()
+    elif menu == '2':
+        catat_kehadiran()
+    elif menu == '3':
+        print("Terima kasih telah menggunakan aplikasi presensi. Sampai jumpa!")
+        break # Menghentikan program
+    else:
+        print("Menu tidak tersedia. Silakan ketik angka 1, 2, atau 3.\n")
